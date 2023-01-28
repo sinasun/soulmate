@@ -21,7 +21,9 @@ export const authOptions: NextAuthOptions = {
 			console.log("Sign In:", user, account, profile, email, credentials);
 			return true;
 		},
-		async jwt({ token }) {
+		async jwt({ token, account, profile }) {
+			// Persist the OAuth access_token and or the user id to the token right after signin
+			console.log("JWT", token, account, profile);
 			return token;
 		},
 	},

@@ -27,7 +27,7 @@ export default function Home() {
 				{session && (
 					<>
 						<h1>Successfully signed in as {session.user?.name}</h1>
-						<button onClick={() => signOut}>sign out</button>
+						<button onClick={() => signOut()}>sign out</button>
 					</>
 				)}
 			</div>
