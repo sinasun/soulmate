@@ -11,6 +11,18 @@ export const authOptions: NextAuthOptions = {
 			clientId: process.env.INSTAGRAM_CLIENT_ID,
 			clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
 			checks: [],
+			userinfo: {
+				url: "https://graph.instagram.com/me",
+				params: [
+					"id",
+					"media_type",
+					"media_url",
+					"username",
+					"timestamp",
+				],
+			},
+
+			//
 		}),
 	],
 	theme: {
