@@ -27,6 +27,15 @@ export const authOptions: NextAuthOptions = {
 			return token;
 		},
 	},
+	events: {
+		async createUser(message) {
+			console.log("Create User:", message);
+		},
+		async session(message) {
+			console.log("Session:", message);
+		},
+	},
+	debug: true,
 };
 
 export default NextAuth(authOptions);
