@@ -5,7 +5,7 @@ import prisma from "@/lib/prismadb";
 
 export const authOptions: NextAuthOptions = {
 	adapter: PrismaAdapter(prisma),
-
+	secret: process.env.SECRET,
 	providers: [
 		InstagramProvider({
 			clientId: process.env.INSTAGRAM_CLIENT_ID,
