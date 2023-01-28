@@ -17,11 +17,8 @@ export const authOptions: NextAuthOptions = {
 	},
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
-			if (email) {
-				console.log(email);
-			}
-			console.log("No Email");
-			console.log(user);
+			delete account?.user_id;
+			console.log("Sign In:", user, account, profile, email, credentials);
 			return true;
 		},
 		async jwt({ token }) {
