@@ -11,12 +11,14 @@ export default function MePage() {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (session?.user?.name) {
-			if (!session?.user?.email) {
-				router.push("/register");
+		if (session != undefined) {
+			if (session != null) {
+				if (!session?.user?.email) {
+					router.push("/register");
+				}
+			} else {
+				router.push("/");
 			}
-		} else {
-			router.push("/");
 		}
 		async function fetchData() {
 			const res = await fetch(`/api/user/getAllCrush`, {
