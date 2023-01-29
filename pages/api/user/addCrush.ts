@@ -21,8 +21,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const { crushId } = (await JSON.parse(req.body)) as InputData;
 	await prisma.connection.create({
 		data: {
-			userId: username,
-			crushId: crushId,
+			userId: username!,
+			crushId: crushId!,
 		},
 	});
 	const findUser = await prisma.connection.findFirst({
