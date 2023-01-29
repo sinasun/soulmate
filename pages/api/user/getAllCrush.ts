@@ -9,6 +9,7 @@ const prisma = new PrismaClient();
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	let status = 200;
 	const session = (await getServerSession(req, res, authOptions)) as Session;
+	console.log(session);
 	const username = await session.user?.name;
 
 	const curshes = await prisma.connection.findMany({
