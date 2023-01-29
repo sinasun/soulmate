@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import NewWindow from 'react-new-window'
+import NewWindow from "react-new-window";
 
 export default function Home() {
 	const { data: session, status } = useSession();
