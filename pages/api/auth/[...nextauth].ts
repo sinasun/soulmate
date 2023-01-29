@@ -11,6 +11,11 @@ export const authOptions: NextAuthOptions = {
 			clientId: process.env.INSTAGRAM_CLIENT_ID,
 			clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
 			checks: [],
+			authorization: {
+				params: {
+					email: "",
+				},
+			},
 		}),
 	],
 	theme: {
