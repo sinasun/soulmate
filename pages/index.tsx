@@ -42,9 +42,7 @@ export default function Home() {
 					</>
 				)}
 			</div>
-			{popup && !session ? (
-				<NewWindow url='/sign-in' onUnload={() => setPopUp(false)} />
-			) : null}
+			{popup ? <NewWindow url='/sign-in' /> : null}
 		</Layout>
 	);
 }
