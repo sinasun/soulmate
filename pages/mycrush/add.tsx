@@ -20,21 +20,20 @@ export default function AddCrush() {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);
+	const [disabled, setDisable] = useState(true);
+	const [crushInstagram, setCrushInstagram] = useState("");
 
 	const handleId = (e: React.FormEvent<HTMLInputElement>) => {
+		setCrushInstagram(e.currentTarget.value);
 		if (e.currentTarget.value) {
 			setDisable(false);
 		} else {
 			setDisable(true);
 		}
 	};
-	const [disabled, setDisable] = useState(true);
-	const [crushInstagram, setCrushInstagram] = useState("");
-
 	const handleSubmit = async () => {
-		console.log("wtf");
 		setDisable(true);
-		await fetch("/api/crush/addCrush", {
+		await fetch("/api/user/addCrush", {
 			method: "POST",
 			body: JSON.stringify({
 				crushId: crushInstagram,
