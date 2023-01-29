@@ -9,8 +9,12 @@ export default function Home() {
 
 	useEffect(() => {
 		console.log(session?.user);
-		if (session && !session?.user?.email) {
-			router.push("/register");
+		if (session) {
+			if (!session?.user?.email) {
+				router.push("/register");
+			} else {
+				router.push("/mycrush");
+			}
 		}
 	}, [session, router]);
 	return (

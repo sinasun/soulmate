@@ -15,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		res,
 		authOptions
 	)) as Session;
+	console.log(session.user);
 	const username = await session.user?.name;
 	let status = 200,
 		resultBody = {
