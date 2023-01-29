@@ -29,14 +29,20 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 			delete account?.user_id;
-			await prisma.user.updateMany({
-				where: { name: user.name! },
-				data: {
-					email: email,
-				},
-			});
+
 			return true;
 		},
 	},
-	debug: true,
+	events: {
+		async createUser(message) {
+			// await prisma.user.updateMany({
+			// 	where: { name: user.name! },
+			// 	data: {
+			// 		email: email,
+			// 	},
+			// });
+			console.log("User:", message);
+		},
+	},
+	debug: false,
 };
