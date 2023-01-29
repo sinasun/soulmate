@@ -4,10 +4,11 @@ import InstagramProvider from "next-auth/providers/instagram";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prismadb";
 
+let emailCookie = "";
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
 	// Get a custom cookie value from the request
-	const someCookie = req.cookies["email"];
-	console.log(someCookie);
+
+	emailCookie = req.cookies["email"]!;
 
 	return await NextAuth(req, res, authOptions);
 }
@@ -28,6 +29,8 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 			delete account?.user_id;
+			console.log("Email", emailCookie);
+			user.email = emailCookie;
 			return true;
 		},
 	},
