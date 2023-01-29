@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import TextField from "@/components/TextField";
 
 export default function AddCrush() {
 	const { data: session } = useSession();
@@ -20,7 +21,7 @@ export default function AddCrush() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);
 
-	const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
+	const handleId = (e: React.FormEvent<HTMLInputElement>) => {
 		if (e.currentTarget.value) {
 			setDisable(false);
 		} else {
@@ -55,17 +56,13 @@ export default function AddCrush() {
 				you back!
 			</p>
 
-			<div className='mb-8 mt-24'>
-				<input
-					required
-					type='text'
-					id='crushinstagram'
-					name='crushinstagram'
-					placeholder='Your Crush Instagram id'
-					onChange={(e) => setCrushInstagram(e.target.value)}
-					className='bg-white border outline-none border-primary  text-text-primary focus:!border-text-primary text-base rounded-3xl  block w-full px-4 py-3'
-				/>
-			</div>
+			<TextField
+				id='instagramid'
+				name='instagramid'
+				placeholder='Enter Your Crush Instagram Id'
+				type='text'
+				handle={handleId}
+			/>
 			<button
 				disabled={disabled}
 				onClick={handleSubmit}

@@ -54,7 +54,7 @@ const Register = () => {
 					name='email'
 					placeholder='Enter Your Email'
 					type='email'
-					handleEmail={handleEmail}
+					handle={handleEmail}
 				/>
 				<button
 					disabled={disabled}
