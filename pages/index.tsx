@@ -1,12 +1,11 @@
 import Layout from "@/components/Layout";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import NewWindow from "react-new-window";
+import { useEffect } from "react";
 
 export default function Home() {
-	const { data: session, status } = useSession();
-	const [popup, setPopUp] = useState(false);
+	const { data: session } = useSession();
+
 	const router = useRouter();
 
 	useEffect(() => {
@@ -32,7 +31,9 @@ export default function Home() {
 				{!session && (
 					<>
 						<p> Sign in to continue</p>
-						<button onClick={() => setPopUp(true)}>Sign In</button>
+						<button onClick={() => signIn("instagram")}>
+							Sign In
+						</button>
 					</>
 				)}
 				{session && (
@@ -42,7 +43,6 @@ export default function Home() {
 					</>
 				)}
 			</div>
-			{popup ? <NewWindow url='/sign-in' /> : null}
 		</Layout>
 	);
 }

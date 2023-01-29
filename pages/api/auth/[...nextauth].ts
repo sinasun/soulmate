@@ -21,15 +21,6 @@ export const authOptions: NextAuthOptions = {
 			delete account?.user_id;
 			return true;
 		},
-		async redirect({ url, baseUrl }) {
-			console.log("Url:", url);
-			console.log("baseUrl:", baseUrl);
-			return baseUrl;
-		},
-		async session({ session, token, user }) {
-			console.log("Session", session, token);
-			return session;
-		},
 	},
 	debug: true,
 };
