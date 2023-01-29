@@ -9,7 +9,7 @@ type InputData = {
 	email: string;
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const session = (await unstable_getServerSession(
 		req,
 		res,
