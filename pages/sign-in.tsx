@@ -7,7 +7,7 @@ const SignInPage = () => {
 	useEffect(() => {
 		console.log(status);
 		if (status == "unauthenticated" && !session) {
-			void signIn("instagram");
+			signIn("instagram", { callbackUrl: "https://khodaveisi.com" });
 		}
 		if (status == "authenticated" && session) window.close();
 	}, [session, status]);
