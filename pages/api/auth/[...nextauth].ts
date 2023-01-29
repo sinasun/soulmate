@@ -35,13 +35,12 @@ export const authOptions: NextAuthOptions = {
 	},
 	events: {
 		async createUser(message) {
-			// await prisma.user.updateMany({
-			// 	where: { name: user.name! },
-			// 	data: {
-			// 		email: email,
-			// 	},
-			// });
-			console.log("User:", message);
+			await prisma.user.updateMany({
+				where: { name: message.user.name! },
+				data: {
+					email: email,
+				},
+			});
 		},
 	},
 	debug: false,
