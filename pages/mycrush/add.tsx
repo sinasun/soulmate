@@ -9,6 +9,7 @@ export default function AddCrush() {
 	const router = useRouter();
 
 	useEffect(() => {
+		console.log(session);
 		if (session != null) {
 			if (!session?.user?.email) {
 				router.push("/register");

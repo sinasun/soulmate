@@ -36,37 +36,34 @@ export default function MePage() {
 					<th>Delete</th>
 				</tr>
 
-				{crushes ? (
-					crushes.map((row: any) => (
-						<tr key={row.crushId}>
-							<td>{row.crushId}</td>
-							<td>
-								<button
-									color='error'
-									onClick={async () => {
-										console.log(row.id);
-										const res = await fetch(
-											`/api/nft/deleteNft`,
-											{
-												method: "POST",
-												body: JSON.stringify({
-													crushId: row.crushId,
-												}),
-											}
-										).then(() => {
-											router.reload();
-										});
-									}}
-								>
-									Delete
-								</button>
-							</td>
-						</tr>
-					))
-				) : (
-					<></>
-				)}
+				{crushes ? <>{crushes}</> : <></>}
 			</table>
 		</div>
 	);
 }
+// crushes.map((row: any) => (
+// 	<tr key={row.crushId}>
+// 		<td>{row.crushId}</td>
+// 		<td>
+// 			<button
+// 				color='error'
+// 				onClick={async () => {
+// 					console.log(row.id);
+// 					const res = await fetch(
+// 						`/api/nft/deleteNft`,
+// 						{
+// 							method: "POST",
+// 							body: JSON.stringify({
+// 								crushId: row.crushId,
+// 							}),
+// 						}
+// 					).then(() => {
+// 						router.reload();
+// 					});
+// 				}}
+// 			>
+// 				Delete
+// 			</button>
+// 		</td>
+// 	</tr>
+// ))
