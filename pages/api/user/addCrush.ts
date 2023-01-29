@@ -12,7 +12,7 @@ type InputData = {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const session = (await getServerSession(req, res, authOptions)) as Session;
 	const username = await session.user?.name;
-	
+
 	let status = 200,
 		resultBody = {
 			status: "fail",
@@ -28,6 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const findUser = await prisma.connection.findFirstOrThrow({
 		where: { userId: crushId, userId: username },
 	});
+	console.log(findUser);
 	if (findUser) {
 		console.log("HOOOOOOOOOOOOOOOORAYYYYYYYYYY");
 	}
