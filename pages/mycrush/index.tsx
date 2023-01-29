@@ -28,7 +28,7 @@ export async function getServerSideProps(context: any) {
 	);
 	const res = await fetch(`https://khodaveisi.com/api/user/getAllCrush`, {
 		method: "POST",
-		body: JSON.stringify({}),
+		body: JSON.stringify({ session }),
 	});
 	if (res.ok) {
 		const data = await res.json();

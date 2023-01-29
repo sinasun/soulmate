@@ -3,12 +3,16 @@ import { Session, getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { PrismaClient } from "@prisma/client";
 
-//database
 const prisma = new PrismaClient();
+
+type InputData = {
+	session: Session;
+};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	let status = 200;
-	const session = (await getServerSession(req, res, authOptions)) as Session;
+	const { session } = (await JSON.parse(req.body)) as InputData;
+
 	console.log(session);
 	const username = await session.user?.name;
 
