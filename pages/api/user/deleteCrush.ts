@@ -16,13 +16,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	let status = 200;
 
 	const { crushId } = (await JSON.parse(req.body)) as InputData;
-	const nft = await prisma.connection.delete({
+	const findUser = await prisma.connection.findFirst({
 		where: {
 			AND: [{ userId: username }, { crushId: crushId }],
 		},
 	});
+	const crush = await prisma.connection.delete({
+		where: {
+			id: findUser.id,
+		},
+	});
 
-	res.status(status).json(nft);
+	res.status(status).json(crush);
 };
 
 export default handler;
