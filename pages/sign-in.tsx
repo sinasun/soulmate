@@ -9,7 +9,7 @@ const SignInPage = () => {
 		if (status == "unauthenticated" && !session) {
 			void signIn("instagram");
 		}
-		if (status == "authenticated") window.close();
+		//if (status == "authenticated") window.close();
 	}, [session, status]);
 
 	return null;
