@@ -19,13 +19,7 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 			delete account?.user_id;
-			console.log("Sign In:", user, account);
 			return true;
-		},
-	},
-	events: {
-		async createUser(message) {
-			console.log("Create User:", message);
 		},
 	},
 };

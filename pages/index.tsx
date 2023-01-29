@@ -8,7 +8,6 @@ export default function Home() {
 	const router = useRouter();
 
 	useEffect(() => {
-		console.log(session?.user);
 		if (session) {
 			if (!session?.user?.email) {
 				router.push("/register");
