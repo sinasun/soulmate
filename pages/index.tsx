@@ -3,6 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import TextField from "@/components/TextField";
+import { getCookies, getCookie, setCookies, removeCookies } from "cookies-next";
 
 export default function Home() {
 	const { data: session } = useSession();
@@ -54,11 +55,10 @@ export default function Home() {
 						<p> Sign in to continue</p>
 						<button
 							disabled={disabled}
-							onClick={() =>
-								signIn("instagram", {
-									email: email,
-								})
-							}
+							onClick={() => {
+								setCookies("email", email);
+								signIn("instagram");
+							}}
 						>
 							Sign In
 						</button>
