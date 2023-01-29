@@ -59,7 +59,10 @@ export default function Home() {
 						<button
 							disabled={disabled}
 							onClick={() =>
-								signIn("instagram", { email: email })
+								signIn("instagram", {
+									email: email,
+									test: email,
+								})
 							}
 						>
 							Sign In
