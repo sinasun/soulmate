@@ -20,6 +20,13 @@ export default function AddCrush() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);
 
+	const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
+		if (e.currentTarget.value) {
+			setDisable(false);
+		} else {
+			setDisable(true);
+		}
+	};
 	const [disabled, setDisable] = useState(true);
 	const [crushInstagram, setCrushInstagram] = useState("");
 
