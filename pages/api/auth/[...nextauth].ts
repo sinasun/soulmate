@@ -24,6 +24,9 @@ export const authOptions: NextAuthOptions = {
 		async redirect({ url, baseUrl }) {
 			console.log("Url:", url);
 			console.log("baseUrl:", baseUrl);
+			if (url == "https://khodaveisi.com/sign-in") {
+				return url;
+			}
 			return baseUrl;
 		},
 		async session({ session, token, user }) {
