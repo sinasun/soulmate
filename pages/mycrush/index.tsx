@@ -31,7 +31,7 @@ export default function Page(props: any) {
 												color='error'
 												onClick={async () => {
 													const res = await fetch(
-														`/api/nft/deleteNft`,
+														`/api/user/deleteNft`,
 														{
 															method: "POST",
 															body: JSON.stringify(
