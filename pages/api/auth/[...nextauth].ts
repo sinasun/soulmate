@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
 		async signIn({ user, account, profile, email, credentials }) {
 			delete account?.user_id;
 			console.log("Email", emailCookie);
-			user.email = emailCookie;
+			profile!.email = emailCookie;
 			return true;
 		},
 	},
