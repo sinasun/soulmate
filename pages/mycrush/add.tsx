@@ -31,8 +31,9 @@ export default function AddCrush() {
 			body: JSON.stringify({
 				crushId: crushInstagram,
 			}),
-		}).then(() => {
+		}).then((res: any) => {
 			setDisable(false);
+			console.log(res);
 		});
 	};
 
