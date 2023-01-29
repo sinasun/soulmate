@@ -10,6 +10,8 @@ const pacifico = Pacifico({
 import Image from "next/image";
 import backgroundImage from "@/public/background.jpg";
 
+
+
 export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<>

@@ -1,10 +1,18 @@
 import Layout from "@/components/Layout";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
-	const { data: session, status } = useSession();
-	const loading = status === "loading";
+	const { data: session } = useSession();
+	const router = useRouter();
 
+	useEffect(() => {
+		console.log(session?.user);
+		if (session && !session?.user?.email) {
+			router.push("/register");
+		}
+	}, [session, router]);
 	return (
 		<Layout>
 			<div className='flex flex-col w-4/5 md:w-2/3 mx-auto mt-24 pb-32'>
