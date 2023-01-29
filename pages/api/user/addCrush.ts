@@ -12,7 +12,7 @@ type InputData = {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const session = (await getServerSession(req, res, authOptions)) as Session;
 	const username = await session.user?.name;
-	console.log(username);
+	
 	let status = 200,
 		resultBody = {
 			status: "fail",

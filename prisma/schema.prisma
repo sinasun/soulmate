@@ -12,7 +12,7 @@ model Connection {
   userId  String
   crushId String
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [name], onDelete: Cascade)
 }
 
 model Account {
