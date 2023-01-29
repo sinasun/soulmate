@@ -13,7 +13,7 @@ export default function Home() {
 			if (!session?.user?.email) {
 				router.push("/register");
 			} else {
-				router.push("/mycrush");
+				// router.push("/mycrush");
 			}
 		}
 	}, [session, router]);

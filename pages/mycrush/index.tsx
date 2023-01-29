@@ -1,10 +1,12 @@
 import { useSession } from "next-auth/react";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function MePage(props: any) {
-	console.log(props);
+export default function MePage() {
+	const [crushes, setCrushes] = useState() as [any, any];
+
+	useEffect(() => {});
 	const { data: session } = useSession();
 	const router = useRouter();
 
@@ -16,6 +18,17 @@ export default function MePage(props: any) {
 		} else {
 			router.push("/");
 		}
+		async function fetchData() {
+			const res = await fetch(
+				`http://khodaveisi.com/api/user/getAllCrush`,
+				{
+					method: "POST",
+					body: JSON.stringify({}),
+				}
+			);
+			setCrushes(res.body);
+		}
+		fetchData();
 	}, [session, router]);
 
 	return (
@@ -26,8 +39,8 @@ export default function MePage(props: any) {
 					<th>Delete</th>
 				</tr>
 
-				{props.data ? (
-					props.data.map((row: any) => (
+				{crushes ? (
+					crushes.map((row: any) => (
 						<tr key={row.crushId}>
 							<td>{row.crushId}</td>
 							<td>
@@ -59,18 +72,4 @@ export default function MePage(props: any) {
 			</table>
 		</div>
 	);
-}
-
-export async function getServerSideProps() {
-	// Fetch data from external API
-	const res = await fetch(`http://khodaveisi.com/api/user/getAllCrush`, {
-		method: "POST",
-		body: JSON.stringify({}),
-	});
-	if (res.ok) {
-		const data = await res.json();
-
-		return { props: { data } };
-	}
-	return { props: {} };
 }
