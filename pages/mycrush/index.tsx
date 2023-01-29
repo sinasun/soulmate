@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Layout from "@/components/Layout";
+import Link from "next/link";
 
 export default function Page(props: any) {
 	const { data: session } = useSession();
@@ -14,8 +16,11 @@ export default function Page(props: any) {
 			router.push("/register");
 		} else {
 			return (
-				<>
+				<Layout>
 					<div className='flex flex-col'>
+						<Link href='/mycrush/add'>
+							<button>Add new crush</button>
+						</Link>
 						<table>
 							<tr>
 								<th>Crush Instagram Id</th>
@@ -55,8 +60,8 @@ export default function Page(props: any) {
 								<></>
 							)}
 						</table>
-					</div>{" "}
-				</>
+					</div>
+				</Layout>
 			);
 		}
 	} else {
