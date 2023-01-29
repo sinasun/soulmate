@@ -24,6 +24,7 @@ export default function AddCrush() {
 	const [crushInstagram, setCrushInstagram] = useState("");
 
 	const handleSubmit = async (e: any) => {
+		console.log("wtf");
 		e.preventDefault();
 		setDisable(true);
 		await fetch("/api/crush/addCrush", {
