@@ -9,7 +9,7 @@ type InputData = {
 	email: string;
 };
 
-export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const session = (await unstable_getServerSession(
 		req,
 		res,
@@ -34,3 +34,4 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 	res.status(status).json(resultBody);
 };
+export default handler;
