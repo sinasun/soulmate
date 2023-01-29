@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	});
 	const findUser = await prisma.connection.findFirst({
 		where: {
-			AND: [{ userId: crushId }, { crushId: username }],
+			AND: [{ userId: crushId! }, { crushId: username! }],
 		},
 	});
 	if (findUser) {
