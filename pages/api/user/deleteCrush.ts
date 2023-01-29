@@ -23,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	});
 	const crush = await prisma.connection.delete({
 		where: {
-			id: findUser.id,
+			id: findUser!.id,
 		},
 	});
 
