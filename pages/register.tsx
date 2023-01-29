@@ -9,10 +9,14 @@ const Register = () => {
 
 	const router = useRouter();
 	useEffect(() => {
-		if (session && session?.user?.email) {
-			router.push("/mycrush");
+		if (session != null) {
+			if (session?.user?.email) {
+				router.push("/mycrush");
+			}
+		} else {
+			router.push("/");
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);
 
 	const [email, setEmail] = useState("");

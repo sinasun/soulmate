@@ -11,7 +11,7 @@ export default function MePage() {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (session) {
+		if (session != null) {
 			if (!session?.user?.email) {
 				router.push("/register");
 			}
@@ -19,13 +19,10 @@ export default function MePage() {
 			router.push("/");
 		}
 		async function fetchData() {
-			const res = await fetch(
-				`http://khodaveisi.com/api/user/getAllCrush`,
-				{
-					method: "POST",
-					body: JSON.stringify({}),
-				}
-			);
+			const res = await fetch(`/api/user/getAllCrush`, {
+				method: "POST",
+				body: JSON.stringify({}),
+			});
 			setCrushes(res.body);
 		}
 		fetchData();
