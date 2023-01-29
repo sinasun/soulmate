@@ -57,7 +57,6 @@ export default function Home() {
 							onClick={() =>
 								signIn("instagram", {
 									email: email,
-									test: email,
 								})
 							}
 						>
