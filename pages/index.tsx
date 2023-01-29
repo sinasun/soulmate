@@ -1,7 +1,8 @@
 import Layout from "@/components/Layout";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import TextField from "@/components/TextField";
 
 export default function Home() {
 	const { data: session } = useSession();
@@ -17,6 +18,23 @@ export default function Home() {
 			}
 		}
 	}, [session, router]);
+	const [email, setEmail] = useState("");
+	const [disabled, setDisable] = useState(true);
+	const validateEmail = (email: String) => {
+		return String(email)
+			.toLowerCase()
+			.match(
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
+	};
+	const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
+		setEmail(e.currentTarget.value);
+		if (validateEmail(e.currentTarget.value)) {
+			setDisable(false);
+		} else {
+			setDisable(true);
+		}
+	};
 	return (
 		<Layout>
 			<div className='flex flex-col w-4/5 md:w-2/3 mx-auto mt-24 pb-32'>
@@ -28,10 +46,22 @@ export default function Home() {
 					Login with instagram and wait for your crush to like you
 					back
 				</p>
+				<TextField
+					id='email'
+					name='email'
+					placeholder='Enter Your Email'
+					type='email'
+					handle={handleEmail}
+				/>
 				{!session && (
 					<>
 						<p> Sign in to continue</p>
-						<button onClick={() => signIn("instagram")}>
+						<button
+							disabled={disabled}
+							onClick={() =>
+								signIn("instagram", { email: email })
+							}
+						>
 							Sign In
 						</button>
 					</>

@@ -10,11 +10,7 @@ export default function AddCrush() {
 
 	useEffect(() => {
 		if (session != undefined) {
-			if (session != null) {
-				if (!session?.user?.email) {
-					router.push("/register");
-				}
-			} else {
+			if (session == null) {
 				router.push("/");
 			}
 		}

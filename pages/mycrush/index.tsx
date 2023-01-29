@@ -12,58 +12,52 @@ export default function Page(props: any) {
 	if (typeof window === "undefined") return null;
 
 	if (session) {
-		if (!session?.user?.email) {
-			router.push("/register");
-		} else {
-			return (
-				<Layout>
-					<div className='flex flex-col'>
-						<Link href='/mycrush/add'>
-							<button>Add new crush</button>
-						</Link>
-						<table>
-							<tr>
-								<th>Crush Instagram Id</th>
-								<th>Delete</th>
-							</tr>
+		return (
+			<Layout>
+				<div className='flex flex-col'>
+					<Link href='/mycrush/add'>
+						<button>Add new crush</button>
+					</Link>
+					<table>
+						<tr>
+							<th>Crush Instagram Id</th>
+							<th>Delete</th>
+						</tr>
 
-							{props.data ? (
-								props.data.map((row: any) => (
-									<tr key={row.crushId}>
-										<td>{row.crushId}</td>
-										<td>
-											<button
-												color='error'
-												onClick={async () => {
-													const res = await fetch(
-														`/api/user/deleteCrush`,
-														{
-															method: "POST",
-															body: JSON.stringify(
-																{
-																	crushId:
-																		row.crushId,
-																}
-															),
-														}
-													).then(() => {
-														router.reload();
-													});
-												}}
-											>
-												Delete
-											</button>
-										</td>
-									</tr>
-								))
-							) : (
-								<></>
-							)}
-						</table>
-					</div>
-				</Layout>
-			);
-		}
+						{props.data ? (
+							props.data.map((row: any) => (
+								<tr key={row.crushId}>
+									<td>{row.crushId}</td>
+									<td>
+										<button
+											color='error'
+											onClick={async () => {
+												const res = await fetch(
+													`/api/user/deleteCrush`,
+													{
+														method: "POST",
+														body: JSON.stringify({
+															crushId:
+																row.crushId,
+														}),
+													}
+												).then(() => {
+													router.reload();
+												});
+											}}
+										>
+											Delete
+										</button>
+									</td>
+								</tr>
+							))
+						) : (
+							<></>
+						)}
+					</table>
+				</div>
+			</Layout>
+		);
 	} else {
 		router.push("/");
 	}
