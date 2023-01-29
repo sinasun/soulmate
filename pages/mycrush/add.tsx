@@ -10,12 +10,14 @@ export default function AddCrush() {
 
 	useEffect(() => {
 		console.log(session);
-		if (session?.user?.name) {
+		if (session) {
 			if (!session?.user?.email) {
-				router.push("/register");
+				console.log("register");
+				//router.push("/register");
 			}
 		} else {
-			router.push("/");
+			console.log("home");
+			//router.push("/");
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);

@@ -9,7 +9,7 @@ const Register = () => {
 
 	const router = useRouter();
 	useEffect(() => {
-		if (session?.user?.name) {
+		if (session) {
 			if (session?.user?.email) {
 				router.push("/mycrush");
 			}
