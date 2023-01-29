@@ -12,7 +12,8 @@ const Register = () => {
 		if (session && session?.user?.email) {
 			router.push("/mycrush");
 		}
-	}, [session, router]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [session]);
 
 	const [email, setEmail] = useState("");
 	const [disabled, setDisable] = useState(true);

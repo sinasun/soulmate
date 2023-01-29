@@ -8,6 +8,7 @@ export default function AddCrush() {
 	const router = useRouter();
 
 	useEffect(() => {
+		console.log(session);
 		if (session) {
 			if (!session?.user?.email) {
 				router.push("/register");
@@ -15,7 +16,8 @@ export default function AddCrush() {
 		} else {
 			router.push("/");
 		}
-	}, [session, router]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [session]);
 
 	const [disabled, setDisable] = useState(true);
 	const [crushInstagram, setCrushInstagram] = useState("");
