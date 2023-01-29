@@ -35,7 +35,7 @@ const Register = () => {
 
 	const submitEmail = async () => {
 		setDisable(true);
-		const res = await fetch("/user/email", {
+		const res = await fetch("/api/user/email", {
 			method: "POST",
 			body: JSON.stringify({
 				email,
