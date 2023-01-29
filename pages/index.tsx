@@ -11,11 +11,7 @@ export default function Home() {
 
 	useEffect(() => {
 		if (session) {
-			if (!session?.user?.email) {
-				router.push("/register");
-			} else {
-				router.push("/mycrush");
-			}
+			router.push("/mycrush");
 		}
 	}, [session, router]);
 	const [email, setEmail] = useState("");
