@@ -23,9 +23,8 @@ export default function AddCrush() {
 	const [disabled, setDisable] = useState(true);
 	const [crushInstagram, setCrushInstagram] = useState("");
 
-	const handleSubmit = async (e: any) => {
+	const handleSubmit = async () => {
 		console.log("wtf");
-		e.preventDefault();
 		setDisable(true);
 		await fetch("/api/crush/addCrush", {
 			method: "POST",
@@ -61,7 +60,6 @@ export default function AddCrush() {
 				/>
 			</div>
 			<button
-				type='submit'
 				disabled={disabled}
 				onClick={handleSubmit}
 				className='mt-0 bg-primary text-xl text-text-primary px-16 py-6 w-fit rounded-3xl mx-auto duration-200 border-2 border-primary hover:border-text-primary '
