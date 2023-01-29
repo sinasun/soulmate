@@ -9,14 +9,12 @@ export default function AddCrush() {
 	const router = useRouter();
 
 	useEffect(() => {
-		console.log(session);
-		if (session) {
-			if (!session.user) {
-				router.push("/");
-			}
+		if (session != null) {
 			if (!session?.user?.email) {
 				router.push("/register");
 			}
+		} else {
+			router.push("/");
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);
