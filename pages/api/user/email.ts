@@ -23,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		};
 	const { email } = (await JSON.parse(req.body)) as InputData;
 	await prisma.user.update({
-		where: { name: username },
+		where: { name: username! },
 		data: {
 			email: email,
 		},

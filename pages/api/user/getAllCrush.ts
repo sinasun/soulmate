@@ -17,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 	const curshes = await prisma.connection.findMany({
 		where: {
-			userId: username,
+			userId: username!,
 		},
 	});
 
