@@ -1,48 +1,52 @@
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { useSession } from "next-auth/react";
-import Layout from "@/components/Layout";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
-export default function MePage() {
-	const [crushes, setCrushes] = useState() as [any, any];
-
-	useEffect(() => {});
+export default function Page(props: any) {
 	const { data: session } = useSession();
-	const router = useRouter();
 
-	useEffect(() => {
-		if (session != undefined) {
-			if (session != null) {
-				if (!session?.user?.email) {
-					router.push("/register");
-				}
-			} else {
-				router.push("/");
-			}
-		}
-		async function fetchData() {
-			const res = await fetch(`/api/user/getAllCrush`, {
-				method: "POST",
-				body: JSON.stringify({}),
-			});
-			setCrushes(res.body);
-		}
-		fetchData();
-	}, [session, router]);
+	console.log(props);
 
-	return (
-		<div className='flex flex-col'>
-			<table>
-				<tr>
-					<th>Crush Instagram Id</th>
-					<th>Delete</th>
-				</tr>
+	if (typeof window === "undefined") return null;
 
-				{crushes ? <>{crushes}</> : <></>}
-			</table>
-		</div>
-	);
+	if (session) {
+		return (
+			<>
+				<h1>Protected Page</h1>
+				<p>You can view this page because you are signed in.</p>
+			</>
+		);
+	}
+	return <p>Access Denied</p>;
 }
+
+export async function getServerSideProps(context: any) {
+	const session = await getServerSession(
+		context.req,
+		context.res,
+		authOptions
+	);
+	const res = await fetch(`/api/user/getAllCrush`, {
+		method: "POST",
+		body: JSON.stringify({}),
+	});
+	if (res.ok) {
+		const data = await res.json();
+
+		return {
+			props: {
+				session,
+				data,
+			},
+		};
+	}
+	return {
+		props: {
+			session,
+		},
+	};
+}
+
 // crushes.map((row: any) => (
 // 	<tr key={row.crushId}>
 // 		<td>{row.crushId}</td>
