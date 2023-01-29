@@ -35,10 +35,11 @@ export const authOptions: NextAuthOptions = {
 	},
 	events: {
 		async createUser(message) {
+			console.log(emailCookie);
 			await prisma.user.updateMany({
 				where: { name: message.user.name! },
 				data: {
-					email: email,
+					email: emailCookie,
 				},
 			});
 		},
