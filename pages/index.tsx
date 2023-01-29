@@ -9,7 +9,6 @@ export default function Home() {
 
 	useEffect(() => {
 		if (session) {
-			console.log(session);
 			if (!session?.user?.email) {
 				router.push("/register");
 			} else {

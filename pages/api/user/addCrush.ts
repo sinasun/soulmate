@@ -30,7 +30,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			AND: [{ userId: crushId }, { crushId: username }],
 		},
 	});
-	console.log(findUser);
 	if (findUser) {
 		console.log("HOOOOOOOOOOOOOOOORAYYYYYYYYYY");
 	}

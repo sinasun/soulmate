@@ -1,23 +1,67 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Page(props: any) {
 	const { data: session } = useSession();
-
-	console.log(props);
+	const router = useRouter();
 
 	if (typeof window === "undefined") return null;
 
 	if (session) {
-		return (
-			<>
-				<h1>Protected Page</h1>
-				<p>You can view this page because you are signed in.</p>
-			</>
-		);
+		if (!session?.user?.email) {
+			router.push("/register");
+		} else {
+			return (
+				<>
+					<div className='flex flex-col'>
+						<table>
+							<tr>
+								<th>Crush Instagram Id</th>
+								<th>Delete</th>
+							</tr>
+
+							{props.data ? (
+								props.data.map((row: any) => (
+									<tr key={row.crushId}>
+										<td>{row.crushId}</td>
+										<td>
+											<button
+												color='error'
+												onClick={async () => {
+													const res = await fetch(
+														`/api/nft/deleteNft`,
+														{
+															method: "POST",
+															body: JSON.stringify(
+																{
+																	crushId:
+																		row.crushId,
+																}
+															),
+														}
+													).then(() => {
+														router.reload();
+													});
+												}}
+											>
+												Delete
+											</button>
+										</td>
+									</tr>
+								))
+							) : (
+								<></>
+							)}
+						</table>
+					</div>{" "}
+				</>
+			);
+		}
+	} else {
+		router.push("/");
 	}
-	return <p>Access Denied</p>;
 }
 
 export async function getServerSideProps(context: any) {
@@ -46,30 +90,3 @@ export async function getServerSideProps(context: any) {
 		},
 	};
 }
-
-// crushes.map((row: any) => (
-// 	<tr key={row.crushId}>
-// 		<td>{row.crushId}</td>
-// 		<td>
-// 			<button
-// 				color='error'
-// 				onClick={async () => {
-// 					console.log(row.id);
-// 					const res = await fetch(
-// 						`/api/nft/deleteNft`,
-// 						{
-// 							method: "POST",
-// 							body: JSON.stringify({
-// 								crushId: row.crushId,
-// 							}),
-// 						}
-// 					).then(() => {
-// 						router.reload();
-// 					});
-// 				}}
-// 			>
-// 				Delete
-// 			</button>
-// 		</td>
-// 	</tr>
-// ))

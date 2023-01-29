@@ -40,7 +40,6 @@ export default function AddCrush() {
 			}),
 		}).then((res: any) => {
 			setDisable(false);
-			console.log(res);
 		});
 	};
 
