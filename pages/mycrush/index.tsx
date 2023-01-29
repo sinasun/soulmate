@@ -26,7 +26,7 @@ export async function getServerSideProps(context: any) {
 		context.res,
 		authOptions
 	);
-	const res = await fetch(`/api/user/getAllCrush`, {
+	const res = await fetch(`https://khodaveisi.com/api/user/getAllCrush`, {
 		method: "POST",
 		body: JSON.stringify({}),
 	});
